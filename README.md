@@ -24,4 +24,10 @@ cd ~/dotfiles/brew # or wherever your Brewfile is
 brew bundle
 ```
 
+4) Tweak iterm settings if not somehow inherited
+This fixes delete backwards in the shell.
+https://github.com/fish-shell/fish-shell/issues/2124
+
+
+
 Happy coding!
