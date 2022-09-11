@@ -1,0 +1,54 @@
+# To operate 'ln -s ~/dotfiles/zsh/zshrc ~/.zshrc'
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  autojump
+  git
+  zsh-autosuggestions # autosuggestions is the bomb dot com!!!
+  zsh-syntax-highlighting # this lets you color code it allllllllll.... installed with git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+)
+
+ZSH_THEME="Gnzh"
+
+source $ZSH/oh-my-zsh.sh
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+########## End ZSH
+
+# aliases
+alias ctx=kubectx
+alias dbc='osascript ~/dotfiles/osascripts/browser chrome'
+alias dbf='osascript ~/dotfiles/osascripts/browser firefox'
+alias k=kubectl
+alias tf=terraform
+alias zrf='source ~/.zshrc && echo "refreshed zsh profile!"'
+alias zshrc='code ~/.zshrc'
+
+# env vars
+export AWS_PAGER="" # Disable weird aws cli thing
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export TFENV_ARCH=amd64 # to spoof being on an amd machine
+
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# If set, this option causes globs which do not match a file to result in an error without running the command. If unset, the command is run with the un-expanded glob. prevents "no match found" error in tf
+unsetopt NOMATCH
+
+# gcloud SDK Autocompletions
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+
