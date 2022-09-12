@@ -33,6 +33,7 @@ fi
 
 # aliases
 alias ctx=kubectx
+alias gbr='gh pr view -w'
 alias dbc='osascript ~/dotfiles/osascripts/browser chrome'
 alias dbf='osascript ~/dotfiles/osascripts/browser firefox'
 alias k=kubectl
@@ -53,6 +54,32 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 unsetopt NOMATCH
 
 # gcloud SDK Autocompletions
-source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
+
+# prunes local branches git
+# will not delete anything by itself instead do
+# git-prune-local | xargs git branch -d
+git-prune-local() {
+  git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}'
+}
+
+# up moves you up a directory
+up() {
+  local op=print
+  [[ -t 1 ]] && op=cd
+  case "$1" in
+    '') up 1;;
+    -*|+*) $op ~$1;;
+    <->) $op $(printf '../%.0s' {1..$1});;
+    *) local -a seg; seg=(${(s:/:)PWD%/*})
+        local n=${(j:/:)seg[1,(I)$1*]}
+        if [[ -n $n ]]; then
+        $op /$n
+        else
+        print -u2 up: could not find prefix $1 in $PWD
+        return 1
+        fi
+  esac
+}

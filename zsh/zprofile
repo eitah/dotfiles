@@ -1,0 +1,5 @@
+
+###_begin_tam_config_block_###
+export PATH=/Users/eitah/.config/tempus-app-manager/bin:$PATH
+###_end_tam_config_block_###
+
