@@ -49,6 +49,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export TFENV_ARCH=amd64 # to spoof being on an amd machine
 export PATH="$HOME/bin:$PATH" # adds ~/bin to the paths
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" # Adds ~/.krew to the paths
+export KUBE_EDITOR="vim -w" # kubernetes editor vim
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
