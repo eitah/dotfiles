@@ -3,10 +3,10 @@
 /cmd/*/*.zip
 /.vscode
 /.idea
-/bin
+# /bin
 /.kubebuilder
 .DS_Store
-.envrc
+# .envrc
 
 # aid local development by avoiding a main.go
 # /main.go
