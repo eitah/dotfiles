@@ -61,6 +61,7 @@ brew "direnv"
 # brew "docbook"
 # brew "docbook-xsl"
 # brew "dopplerhq/cli/doppler"
+# brew "duti" # default app for application types
 # brew "ed"
 # brew "expect"
 # brew "ffmpeg"

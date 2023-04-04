@@ -57,6 +57,7 @@ export PATH=$PATH:$HOME/go/bin
 
 # Libsonnet detection for autoform modules
 MODS=~/tempus/autoform-modules
+export mods=$MODS
 export JSONNET_PATH=$MODS/jsonnet/concourse-libsonnet:$MODS/jsonnet/tempus-libsonnet
 export PATH="$PATH:$MODS/bin"
 
