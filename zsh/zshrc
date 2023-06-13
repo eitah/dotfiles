@@ -42,7 +42,7 @@ alias gpull='git pull'
 alias k=kubectl
 alias tf=terraform
 alias zrf='source ~/.zshrc && echo "refreshed zsh profile!"'
-alias zshrc='code ~/.zshrc'
+alias zshrc='code ~/.zshrc && cd ~/dotfiles/zsh'
 alias gbrowse='gh browse'
 
 # env vars
@@ -58,7 +58,7 @@ export PATH=$PATH:$HOME/go/bin
 # Libsonnet detection for autoform modules
 MODS=~/tempus/autoform-modules
 export mods=$MODS
-export JSONNET_PATH=$MODS/jsonnet/concourse-libsonnet:$MODS/jsonnet/tempus-libsonnet
+# export JSONNET_PATH=$MODS/jsonnet/concourse-libsonnet:$MODS/jsonnet/tempus-libsonnet # this gets out of date so im just dropping it
 export PATH="$PATH:$MODS/bin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
