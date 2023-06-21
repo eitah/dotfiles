@@ -9,7 +9,7 @@ Usually clutter creeps in but this is my attempt to forestall that for as long a
 * brew - contains brewfile which installs a bunch of stuff.
 * strap - contains strapfile binary in ./strap/bin/strap.sh which bootstraps some settings in macos.
 * zsh - contains arbitrary zsh settings including my current zsh system oh-my-zsh.
-
+* asdf - contains tool versions file that I have to simlink and install plugins for all the things I use with it. 
 ## Step-by-step stuff
 
 1) Run the Strapfile to get some base machine stuff setup, eg homebrew
