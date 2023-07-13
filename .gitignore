@@ -1,0 +1,12 @@
+/out
+/cmd/*/.envrc
+/cmd/*/*.zip
+/.vscode
+/.idea
+# /bin
+/.kubebuilder
+.DS_Store
+# .envrc
+
+# aid local development by avoiding a main.go
+# /main.go
