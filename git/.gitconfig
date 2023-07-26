@@ -21,5 +21,3 @@ diff = auto
 status = auto
 branch = auto
 ui = true
-[commit]
-gpgsign = true
