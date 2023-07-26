@@ -1,0 +1,25 @@
+[push]
+default = simple
+[credential]
+helper = osxkeychain
+[init]
+defaultBranch = main
+[user]
+name = Eli Itah
+email = eli.itah@tempus.com
+signingkey = 8FB402BD4BCFF874
+[code]
+excludesfile = /Users/eitah/.gitignore
+[core]
+excludesfile = /Users/eitah/.gitignore
+editor = code --wait
+[alias]
+hist = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all -20
+co = checkout
+[color]
+diff = auto
+status = auto
+branch = auto
+ui = true
+[commit]
+gpgsign = true
