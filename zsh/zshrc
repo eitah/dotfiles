@@ -54,7 +54,8 @@ export TFENV_ARCH=amd64 # to spoof being on an amd machine
 export PATH="$HOME/bin:$PATH" # adds ~/bin to the paths
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" # Adds ~/.krew to the paths
 export KUBE_EDITOR="code -w" # kubernetes editor vim
-export PATH=$PATH:$HOME/go/bin
+export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/.asdf/shims:$PATH
 
 # Libsonnet detection for autoform modules
 MODS=~/tempus/autoform-modules
