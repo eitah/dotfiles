@@ -12,7 +12,7 @@ plugins=(
   asdf # installer like brew but dumber
   autojump
   git
-  kubectl
+  kubectl\
   zsh-autosuggestions # autosuggestions is the bomb dot com!!!
   zsh-syntax-highlighting # this lets you color code it allllllllll.... installed with git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 )
@@ -46,6 +46,7 @@ alias zrf='source ~/.zshrc && echo "refreshed zsh profile!"'
 alias zshrc='code ~/dotfiles; code ~/.zshrc && cd ~/dotfiles/zsh'
 alias gitrc='code ~/dotfiles; code ~/.gitconfig && cd ~/dotfiles/git'
 alias gbrowse='gh browse'
+alias tflocal='bash <(curl https://nexus.opstempus.com/repository/devops/production/scripts/tflocal)'
 
 # env vars
 export AWS_PAGER="" # Disable weird aws cli thing
@@ -60,7 +61,7 @@ export PATH=$HOME/.asdf/shims:$PATH
 # Libsonnet detection for autoform modules
 MODS=~/tempus/autoform-modules
 export mods=$MODS
-# export JSONNET_PATH=$MODS/jsonnet/concourse-libsonnet:$MODS/jsonnet/tempus-libsonnet # this gets out of date so im just dropping it
+export JSONNET_PATH=$MODS/jsonnet/concourse-libsonnet:$MODS/jsonnet/tempus-libsonnet # this gets out of date so im just dropping it
 export PATH="$PATH:$MODS/bin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -102,6 +103,13 @@ up() {
   esac
 }
 
+# drop lockfile and terraform dirs
+def tfcleanlocal() {
+    find . -type f -name ".terraform.lock.hcl" -delete
+    find . -type d -name ".terraform" -prune -exec rm -rf {} \;
+    find . -type f -name ".identity" -delete
+}
+
 # enable direnv globally
 eval "$(direnv hook zsh)"
 
@@ -111,3 +119,6 @@ export NVM_DIR="$HOME/.nvm"
 
 source <(kubectl completion zsh)
 source <(fly completion --shell bash)
+
+# Enable mcfly CMD+R Rust thingy globally
+eval "$(mcfly init zsh)"
