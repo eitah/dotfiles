@@ -74,7 +74,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # argo rollouts
-source <(kubectl-argo-rollouts completion zsh)
+# source <(kubectl-argo-rollouts completion zsh)
 
 
 # prunes local branches git
