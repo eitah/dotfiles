@@ -59,10 +59,10 @@ export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.asdf/shims:$PATH
 
 # Libsonnet detection for autoform modules
-MODS=~/tempus/autoform-modules
-export mods=$MODS
-export JSONNET_PATH=$MODS/jsonnet/concourse-libsonnet:$MODS/jsonnet/tempus-libsonnet # this gets out of date so im just dropping it
-export PATH="$PATH:$MODS/bin"
+mods=~/tempus/iac/autoform-modules
+export mods=$mods
+export JSONNET_PATH=$mods/jsonnet/concourse-libsonnet:$mods/jsonnet/tempus-libsonnet # this gets out of date so im just dropping it
+export PATH="$PATH:$mods/bin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
