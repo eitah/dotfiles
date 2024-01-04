@@ -17,6 +17,9 @@ plugins=(
   zsh-syntax-highlighting # this lets you color code it allllllllll.... installed with git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 )
 
+# Autocomplete color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=100"
+
 ZSH_THEME="robbyrussell"
 # ZSH_THEME="Gnzh"
 
