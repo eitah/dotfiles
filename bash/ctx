@@ -27,6 +27,8 @@ switch_context() {
 
 if [[ "$#" -ne 1 ]]; then
   list_contexts
+  echo
+  echo "current context is:" "$(kubectl config current-context)"
   exit 0
 fi
 

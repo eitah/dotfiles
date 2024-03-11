@@ -21,3 +21,5 @@ diff = auto
 status = auto
 branch = auto
 ui = true
+[pager]
+branch = false
