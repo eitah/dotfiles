@@ -7,7 +7,7 @@ defaultBranch = main
 [user]
 name = Eli Itah
 email = eli.itah@tempus.com
-signingkey = 8FB402BD4BCFF874
+signingkey = A874FA3798BA87C5 # eli 14 inch macbook credential
 [code]
 excludesfile = /Users/eitah/.gitignore
 [core]

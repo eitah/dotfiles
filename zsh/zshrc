@@ -133,5 +133,3 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # enable asdf
 source "$HOME/.asdf/asdf.sh"
-# Hack to get the prompt to show up again in the theme. needed?
-eval git_prompt_info
