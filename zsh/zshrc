@@ -62,8 +62,10 @@ export PATH="$HOME/bin:$PATH" # adds ~/bin to the paths
 export PATH="$HOME/dotfiles/bash:$PATH" # adds ~/dotfiles/bash to the paths
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" # Adds ~/.krew to the paths
 export KUBE_EDITOR="code -w" # kubernetes editor vim
+export KUBECTL_EXTERNAL_DIFF="dyff"
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.asdf/shims:$PATH
+export FLY_TARGET=main
 
 # Libsonnet detection for autoform modules
 mods=~/tempus/iac/autoform-modules
@@ -127,9 +129,8 @@ export NVM_DIR="$HOME/.nvm"
 source <(kubectl completion zsh)
 source <(fly completion --shell bash)
 
-# Enable mcfly CMD+R Rust thingy globally
-eval "$(mcfly init zsh)"
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+# # Enable mcfly CMD+R Rust thingy globally
+# eval "$(mcfly init zsh)"
 
 # enable asdf
 source "$HOME/.asdf/asdf.sh"
