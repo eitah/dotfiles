@@ -71,7 +71,7 @@ brew "direnv"
 # brew "file-formula"
 # brew "findutils"
 # brew "flac"
-brew "fzf"
+# brew "fzf"
 brew "google-cloud-sdk"
 brew "gh" # github CLI
 # brew "git"

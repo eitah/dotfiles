@@ -134,3 +134,6 @@ source <(fly completion --shell bash)
 
 # enable asdf
 source "$HOME/.asdf/asdf.sh"
+
+#fzf gives autocompletions and a ton of nice stuff https://github.com/junegunn/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
