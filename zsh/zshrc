@@ -135,5 +135,7 @@ source <(fly completion --shell bash)
 # enable asdf
 source "$HOME/.asdf/asdf.sh"
 
-#fzf gives autocompletions and a ton of nice stuff https://github.com/junegunn/fzf
+# fzf gives autocompletions and a ton of nice stuff
+# https://github.com/junegunn/fzf
+# ypu can use FZF_DEFAULT_OPTS to set appearance but I didnt feel the need yet.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
