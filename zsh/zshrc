@@ -42,6 +42,7 @@ fi
 # aliases
 # alias ctx=kubectx
 alias gbr='gh pr view -w'
+alias gbc='gh pr view --json url --jq ".url" | pbcopy'
 alias dbc='osascript ~/dotfiles/osascripts/browser chrome'
 alias dbf='osascript ~/dotfiles/osascripts/browser firefox'
 alias dot='j dotfiles'
