@@ -67,6 +67,7 @@ export KUBECTL_EXTERNAL_DIFF="dyff"
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.asdf/shims:$PATH
 export FLY_TARGET=main
+export DOCKER_DEFAULT_PLATFORM=linux/amd64 # makes sure docker images get built.
 
 # Libsonnet detection for autoform modules
 mods=~/tempus/iac/autoform-modules
