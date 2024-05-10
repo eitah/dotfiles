@@ -79,7 +79,7 @@ set clipboard=unnamedplus
 " Issue this command in the shell in bootstrap:
 " mkdir -p $HOME/.vim/swapfiles  # this dir must exist vi does not create it
 " $HOME/.vimrc
-:set directory=$HOME/.vim/swapfiles//
+:set directory=$HOME/.vim/swapfiles/
 
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
