@@ -63,7 +63,8 @@ set smartcase
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
 
-" Unbind some useless/annoying default key bindings.
+" Unbind some useless/annoying default key bindings. Eli unmapped q bc it is annoying with macros. aslo cant put a comment in line
+nmap q <Nop> " lol
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
 " Disable audible bell because it's annoying.
