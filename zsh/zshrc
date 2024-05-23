@@ -54,6 +54,8 @@ alias zshrc='code ~/dotfiles; code ~/.zshrc && cd ~/dotfiles/zsh'
 alias gitrc='code ~/dotfiles; code ~/.gitconfig && cd ~/dotfiles/git'
 alias gbrowse='gh browse'
 alias be='bundle exec'
+alias pip3=~/.pyenv/shims/pip3.10
+alias python3=~/.pyenv/shims/python3.10
 
 # env vars
 export AWS_PAGER="" # Disable weird aws cli thing
