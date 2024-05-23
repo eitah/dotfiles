@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-which cloud_sql_proxy &>/dev/null || {
+which cloud-sql-proxy &>/dev/null || {
   cat <<EOF >&2
-Requires cloud_sql_proxy:
+Requires cloud-sql-proxy:
 https://cloud.google.com/sql/docs/mysql/quickstart-proxy-test
 EOF
   exit 1
@@ -60,10 +60,10 @@ csqlproxy() {
   local region="$(kv "$secret" CLOUDSQL_REGION)"
   local instance="$(kv "$secret" CLOUDSQL_INSTANCE_NAME)"
 
-  echo cloud_sql_proxy --private-ip \
+  echo cloud-sql-proxy --private-ip \
     "${project}:${region}:${instance}" --port "${port}" &
 
-  cloud_sql_proxy --private-ip \
+  cloud-sql-proxy --private-ip \
     "${project}:${region}:${instance}" --port "${port}" &
 }
 
