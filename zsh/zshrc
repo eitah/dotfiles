@@ -23,7 +23,8 @@ plugins=(
 # Autocomplete color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=100"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME=steeef
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="Gnzh"
 
 source $ZSH/oh-my-zsh.sh
@@ -143,3 +144,12 @@ source "$HOME/.asdf/asdf.sh"
 # https://github.com/junegunn/fzf
 # ypu can use FZF_DEFAULT_OPTS to set appearance but I didnt feel the need yet.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# gpg cache gives you a way to have signed commits without having to type your password every time.
+# it's wired into one password so that when you use the key from "gpg_key" label
+# on the github password it will automatically pass the password to the terminal
+# borrowed from https://bmaingret.github.io/blog/2022-02-15-1Password-gpg-git-seamless-commits-signing#getting-your-gpg-key-grip
+function gpg_cache() {
+  op item get "github" --format json | jq -r '.fields.[] | select(.section.label == "gpg_key") | .value' | /opt/homebrew/Cellar/gnupg/2.4.5/libexec/gpg-preset-passphrase --preset A874FA3798BA87C5
+}
+gpg_cache
