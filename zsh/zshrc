@@ -149,7 +149,8 @@ source "$HOME/.asdf/asdf.sh"
 # it's wired into one password so that when you use the key from "gpg_key" label
 # on the github password it will automatically pass the password to the terminal
 # borrowed from https://bmaingret.github.io/blog/2022-02-15-1Password-gpg-git-seamless-commits-signing#getting-your-gpg-key-grip
-function gpg_cache() {
+gpg_cache() {
   op item get "github" --format json | jq -r '.fields.[] | select(.section.label == "gpg_key") | .value' | /opt/homebrew/Cellar/gnupg/2.4.5/libexec/gpg-preset-passphrase --preset A874FA3798BA87C5
 }
-gpg_cache
+# OMG this is so annoying so I disabled it and just made it a global function
+# gpg_cache
