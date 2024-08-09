@@ -57,6 +57,8 @@ alias gbrowse='gh browse'
 alias be='bundle exec'
 alias pip3=~/.pyenv/shims/pip3.10
 alias python3=~/.pyenv/shims/python3.10
+alias gcauth="gcloud auth login --force --brief --update-adc"
+alias ghpr="gh pr create"
 
 # env vars
 export AWS_PAGER="" # Disable weird aws cli thing
