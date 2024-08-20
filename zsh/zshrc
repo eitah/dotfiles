@@ -59,6 +59,7 @@ alias pip3=~/.pyenv/shims/pip3.10
 alias python3=~/.pyenv/shims/python3.10
 alias gcauth="gcloud auth login --force --brief --update-adc"
 alias ghpr="gh pr create"
+alias syscat="tsh db login --db-name=catalog --db-user=inf-ro@tempus-teleport.iam inf-system-catalog-91e3b935 && tsh db connect inf-system-catalog-91e3b935"
 
 # env vars
 export AWS_PAGER="" # Disable weird aws cli thing
