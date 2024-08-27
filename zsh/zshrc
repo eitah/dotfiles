@@ -32,11 +32,11 @@ source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/zsh/config.zsh # IDK if this works but it seems like what i lifted from https://scriptingosx.com/2019/06/moving-to-zsh-part-3-shell-options/
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+  # export EDITOR='vim'
+# else
+  export EDITOR='code --wait'
+# fi
 
 ########## End ZSH
 
@@ -72,6 +72,8 @@ export KUBE_EDITOR="code -w" # kubernetes editor vim
 export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code" # gives a pretty diff tool for kubectl
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.asdf/shims:$PATH
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 export FLY_TARGET=main
 export DOCKER_DEFAULT_PLATFORM=linux/amd64 # makes sure docker images get built.
 
