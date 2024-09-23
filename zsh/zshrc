@@ -60,6 +60,7 @@ alias python3=~/.pyenv/shims/python3.10
 alias gcauth="gcloud auth login --force --brief --update-adc"
 alias ghpr="gh pr create"
 alias syscat="tsh db login --db-name=catalog --db-user=inf-ro@tempus-teleport.iam inf-system-catalog-91e3b935 && tsh db connect inf-system-catalog-91e3b935"
+alias stg-syscat="tsh db login --db-name=catalog --db-user=inf-ro@tempus-teleport.iam inf-stg-system-catalog-377ac22f && tsh db connect inf-stg-system-catalog-377ac22f"
 
 # env vars
 export AWS_PAGER="" # Disable weird aws cli thing
@@ -165,3 +166,6 @@ gpg-cache() {
 }
 # OMG this is so annoying so I disabled it and just made it a global function
 # gpg_cache
+
+# adds tab completion to zsh
+autoload -U compinit; compinit
