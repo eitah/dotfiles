@@ -174,4 +174,4 @@ autoload -U compinit; compinit
 
 # kyverno test framework
 # https://kyverno.github.io/chainsaw/latest/quick-start/completion/
-source ./chainsaw-completion.sh
+source /Users/eitah/dotfiles/zsh/chainsaw-completion.sh
