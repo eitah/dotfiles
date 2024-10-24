@@ -166,7 +166,8 @@ source "$HOME/.asdf/asdf.sh"
 gpg-cache() {
   op item get "github" --format json | jq -r '.fields.[] | select(.section.label == "gpg_key") | .value' | /opt/homebrew/Cellar/gnupg/2.4.5_1/libexec/gpg-preset-passphrase --preset A874FA3798BA87C5
 }
-# OMG this is so annoying so I disabled it and just made it a global function
+# OMG this is so annoying so I disabled it and just made it a global function.
+# Just call gpg-cache in your shell and it will prompt you for the password and cache it.
 # gpg-cache
 
 # adds tab completion to zsh
