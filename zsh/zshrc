@@ -164,10 +164,10 @@ source "$HOME/.asdf/asdf.sh"
 # on the github password it will automatically pass the password to the terminal
 # borrowed from https://bmaingret.github.io/blog/2022-02-15-1Password-gpg-git-seamless-commits-signing#getting-your-gpg-key-grip
 gpg-cache() {
-  op item get "github" --format json | jq -r '.fields.[] | select(.section.label == "gpg_key") | .value' | /opt/homebrew/Cellar/gnupg/2.4.5/libexec/gpg-preset-passphrase --preset A874FA3798BA87C5
+  op item get "github" --format json | jq -r '.fields.[] | select(.section.label == "gpg_key") | .value' | /opt/homebrew/Cellar/gnupg/2.4.5_1/libexec/gpg-preset-passphrase --preset A874FA3798BA87C5
 }
 # OMG this is so annoying so I disabled it and just made it a global function
-# gpg_cache
+# gpg-cache
 
 # adds tab completion to zsh
 autoload -U compinit; compinit
@@ -175,3 +175,6 @@ autoload -U compinit; compinit
 # kyverno test framework
 # https://kyverno.github.io/chainsaw/latest/quick-start/completion/
 source /Users/eitah/dotfiles/zsh/chainsaw-completion.sh
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/eitah/.cache/lm-studio/bin"
