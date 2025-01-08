@@ -61,6 +61,9 @@ alias gcauth="gcloud auth login --force --brief --update-adc"
 alias ghpr="gh pr create"
 alias syscat="tsh db login --db-name=catalog --db-user=inf-ro@tempus-teleport.iam inf-system-catalog-91e3b935 && tsh db connect inf-system-catalog-91e3b935"
 alias stg-syscat="tsh db login --db-name=catalog --db-user=inf-ro@tempus-teleport.iam inf-stg-system-catalog-377ac22f && tsh db connect inf-stg-system-catalog-377ac22f"
+alias vk="viddy -- kubectl"
+
+
 # restish is in your strapfile but configure the alias with restish api configure syscat https://system-catalog.ops.gcp.tempus.cloud
 alias sc="restish syscat"
 
