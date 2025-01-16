@@ -81,7 +81,9 @@ export PATH=$HOME/.asdf/shims:$PATH
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 export FLY_TARGET=main
-export DOCKER_DEFAULT_PLATFORM=linux/amd64 # makes sure docker images get built.
+# In general you should not need this. Was only necessary before we had
+# providers for everything.
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64 # makes sure docker images get built.
 
 # Libsonnet detection for autoform modules
 mods=~/tempus/iac/autoform-modules
