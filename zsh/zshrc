@@ -112,7 +112,7 @@ git-prune-local() {
 
 # you need to install the gh-browse-compare extension https://github.com/kyanny/gh-browse-compare
 compare() {
-  echo gh compare "$(git config --get init.defaultBranch)" to "$(git branch --show-current)"
+  echo gh compare "$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')" to "$(git branch --show-current)"
   gh compare "$(git config --get init.defaultBranch)".."$(git branch --show-current)"
 }
 
