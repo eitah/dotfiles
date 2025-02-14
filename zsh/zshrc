@@ -73,6 +73,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export PATH="$HOME/bin:$PATH" # adds ~/bin to the paths
 export PATH="$HOME/dotfiles/bash:$PATH" # adds ~/dotfiles/bash to the paths
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" # Adds ~/.krew to the paths
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/" # adds docker cli to the paths
 export KUBE_EDITOR="code -w" # kubernetes editor vim
 export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code" # gives a pretty diff tool for kubectl
 export PATH=$HOME/go/bin:$PATH
