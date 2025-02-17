@@ -78,6 +78,7 @@ export KUBE_EDITOR="code -w" # kubernetes editor vim
 export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code" # gives a pretty diff tool for kubectl
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.asdf/shims:$PATH
+export PATH="$PATH:$HOME/.config/tempus-app-manager/bin"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 export FLY_TARGET=main
