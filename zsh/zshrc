@@ -12,7 +12,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=(
-  # asdf # installer like brew but dumber
   autojump
   git
   kubectl\
@@ -78,7 +77,6 @@ export KUBE_EDITOR="code -w" # kubernetes editor vim
 export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code" # gives a pretty diff tool for kubectl
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.asdf/shims:$PATH
-export PATH="$PATH:$HOME/.config/tempus-app-manager/bin"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 export FLY_TARGET=main
@@ -104,6 +102,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 # argo rollouts
 # source <(kubectl-argo-rollouts completion zsh)
 
+jira completion zsh > "${fpath[1]}/_jira"
 
 # prunes local branches git
 # will not delete anything by itself instead do
@@ -115,7 +114,7 @@ git-prune-local() {
 # you need to install the gh-browse-compare extension https://github.com/kyanny/gh-browse-compare
 compare() {
   echo gh compare "$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')" to "$(git branch --show-current)"
-  gh compare "$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')".."$(git branch --show-current)"
+  gh compare "$(git branch --show-current)"
 }
 
 # up moves you up a directory
@@ -157,9 +156,6 @@ source <(fly completion --shell bash)
 # # Enable mcfly CMD+R Rust thingy globally
 # eval "$(mcfly init zsh)"
 
-# enable asdf
-source "$HOME/.asdf/asdf.sh"
-
 # fzf gives autocompletions and a ton of nice stuff
 # https://github.com/junegunn/fzf
 # ypu can use FZF_DEFAULT_OPTS to set appearance but I didnt feel the need yet.
@@ -191,3 +187,6 @@ if [ -f '/Users/eitah/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/eitah/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/eitah/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Mise is a package installer similar to asdf. its from https://github.com/jdx/mise
+eval "$(~/.local/bin/mise activate zsh)"
