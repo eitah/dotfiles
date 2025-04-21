@@ -10,4 +10,6 @@
 
 # aid local development by avoiding a main.go
 # /main.go
-
+mise.toml
+.vscode/settings.json
+ios/.bundle
