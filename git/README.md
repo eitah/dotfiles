@@ -1,4 +1,4 @@
-In the root of your filesystem include this a base git config
+# In the root of your filesystem include this a base git config
 
 [include]
 path = ~/dotfiles/git/gitconfig.simlink
