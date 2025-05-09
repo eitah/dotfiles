@@ -23,3 +23,5 @@ branch = auto
 ui = true
 [pager]
 branch = false
+[rerere]
+enabled = true

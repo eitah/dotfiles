@@ -1,26 +1,6 @@
-[push]
-default = simple
-[credential]
-helper = osxkeychain
-[init]
-defaultBranch = main
 [user]
 name = Eli Itah
 email = Eli.Itha@gatx.com
 signingkey = A874FA3798BA87C5 # eli 16 inch macbook credential
-[code]
-excludesfile = /Users/eitah/.gitignore
 [core]
-excludesfile = /Users/eitah/.gitignore
-editor = code --wait
 sshCommand = ssh -i ~/.ssh/Eli-Itha_GATX
-[alias]
-hist = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all -20
-co = checkout
-[color]
-diff = auto
-status = auto
-branch = auto
-ui = true
-[pager]
-branch = false
