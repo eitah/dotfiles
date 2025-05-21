@@ -117,6 +117,13 @@ compare() {
   gh compare "$(git branch --show-current)"
 }
 
+
+# this generates a password of length 20 from random characters
+genpass() {
+  LC_ALL=C tr -dc '0-9A-Za-z_@#%*,.:?!~$^&()[]' < /dev/urandom | head -c${1:-20}
+  echo
+}
+
 # up moves you up a directory
 up() {
   local op=print
