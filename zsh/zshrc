@@ -41,7 +41,7 @@ source ~/dotfiles/zsh/config.zsh # IDK if this works but it seems like what i li
 
 # aliases
 # alias ctx=kubectx
-alias gbr='gh pr view -w'
+alias gbr='gh pr view -w || gh browse'
 alias gbc='gh pr view --json url --jq ".url" | pbcopy'
 alias dbc='osascript ~/dotfiles/osascripts/browser chrome'
 alias dbf='osascript ~/dotfiles/osascripts/browser firefox'
@@ -68,6 +68,7 @@ alias sc="restish syscat"
 
 # env vars
 export AWS_PAGER="" # Disable weird aws cli thing
+export PAGER="cat"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export PATH="$HOME/bin:$PATH" # adds ~/bin to the paths
 export PATH="$HOME/dotfiles/bash:$PATH" # adds ~/dotfiles/bash to the paths
@@ -197,3 +198,6 @@ if [ -f '/Users/eitah/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '
 
 # Mise is a package installer similar to asdf. its from https://github.com/jdx/mise
 eval "$(~/.local/bin/mise activate zsh)"
+
+# bun completions
+[ -s "/Users/eitah/.bun/_bun" ] && source "/Users/eitah/.bun/_bun"
