@@ -3,3 +3,4 @@
 export PATH=/Users/eitah/.config/tempus-app-manager/bin:$PATH
 ###_end_tam_config_block_###
 
+eval "$(/opt/homebrew/bin/brew shellenv)"

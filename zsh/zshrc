@@ -81,9 +81,6 @@ export PATH=$HOME/.asdf/shims:$PATH
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 export FLY_TARGET=main
-# In general you should not need this. Was only necessary before we had
-# providers for everything.
-# export DOCKER_DEFAULT_PLATFORM=linux/amd64 # makes sure docker images get built.
 
 # Libsonnet detection for autoform modules
 mods=~/tempus/iac/autoform-modules
@@ -103,7 +100,7 @@ source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/compl
 # argo rollouts
 # source <(kubectl-argo-rollouts completion zsh)
 
-jira completion zsh > "${fpath[1]}/_jira"
+# jira completion zsh > "${fpath[1]}/_jira"
 
 # prunes local branches git
 # will not delete anything by itself instead do
@@ -201,3 +198,7 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 # bun completions
 [ -s "/Users/eitah/.bun/_bun" ] && source "/Users/eitah/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
