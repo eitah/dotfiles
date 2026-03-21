@@ -1,12 +1,13 @@
 [push]
 default = simple
+autoSetupRemote = true
 [credential]
 helper = osxkeychain
 [init]
 defaultBranch = main
 [user]
 name = Eli Itah
-email = eli@spantree.net
+email = elijahbit@gmail.com
 signingkey = A874FA3798BA87C5 # eli 16 inch macbook credential
 [code]
 excludesfile = /Users/eitah/.gitignore
