@@ -24,8 +24,6 @@ cd ~/dotfiles/brew # or wherever your Brewfile is
 brew bundle
 ```
 
-4) Tweak iterm settings if not somehow inherited
-This fixes delete backwards in the shell.
-<https://github.com/fish-shell/fish-shell/issues/2124>
+4) Tweak iterm settings if not somehow inherited. Turn on natural presets. https://www.reddit.com/r/iterm/comments/1e0gsnk/getting_d_and_c_when_pressing_optionarrow_to_move/?rdt=39391
 
 Happy coding!
