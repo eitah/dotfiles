@@ -15,7 +15,7 @@ Usually clutter creeps in but this is my attempt to forestall that for as long a
 1) Run the Strapfile to get some base machine stuff setup, eg homebrew
 ./strap/bin/strap.sh
 
-2) Install shiftit, currently via hammerspoon (<https://github.com/fikovnik/ShiftIt/#alternatives>)
+2) Install shiftit, currently via hammerspoon (<https://github.com/fikovnik/ShiftIt/#alternatives>) Installing the plugin is here https://github.com/fikovnik/ShiftIt/wiki/The-Hammerspoon-Alternative
 
 3) Make sure your brewfile has the right software configured then trigger the brewfile via:
 
