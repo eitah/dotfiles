@@ -54,8 +54,6 @@ alias zshrc='code ~/dotfiles; code ~/.zshrc'
 alias gitrc='code ~/dotfiles; code ~/.gitconfig'
 alias gbrowse='gh browse'
 alias be='bundle exec'
-alias pip3=~/.pyenv/shims/pip3.10
-alias python3=~/.pyenv/shims/python3.12
 alias gcauth="gcloud auth login --force --brief --update-adc"
 alias ghpr="gh pr create"
 alias syscat="tsh db login --db-name=catalog --db-user=inf-ro@tempus-teleport.iam inf-system-catalog-91e3b935 && tsh db connect inf-system-catalog-91e3b935"
@@ -95,7 +93,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # If set, this option causes globs which do not match a file to result in an error without running the command. If unset, the command is run with the un-expanded glob. prevents "no match found" error in tf
 unsetopt NOMATCH
 
-# this is duplicated below 
+# this is duplicated below
 # gcloud SDK Autocompletions
 # source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 # source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
