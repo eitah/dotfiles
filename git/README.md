@@ -12,12 +12,20 @@ The setting is:
 ```ini
 [include]
 path = ~/dotfiles/git/gitconfig
-[includeIf "gitdir:~/gatx"]
-path = ~/dotfiles/gitconfig-gatx
 ```
 
-OK the above is a good start but I ultimately also solved by updating my
-~/.ssh/config per the below
+`gitconfig` itself selects the right identity automatically based on the repo's
+remote URL (Git 2.36+). Any repo with a Bitbucket (cnvrmedia / Epsilon) remote
+uses the epsilon identity; everything else falls back to the default
+(GitHub / `eitah`):
+
+```ini
+# in gitconfig
+[includeIf "hasconfig:remote.*.url:ssh://git@git.cnvrmedia.net:7999/**"]
+path = ~/dotfiles/git/gitconfig-epsilon
+```
+
+The epsilon SSH key is selected via `~/.ssh/config`:
 
 ```
 Host elipi.local
@@ -31,19 +39,11 @@ Host github.com
   UseKeychain yes
   AddKeysToAgent yes
 
-  # Github for GATX Org
-  Host github.com-gatx
-    HostName github.com
-    User git
-    IdentityFile ~/.ssh/Eli-Itha_GATX
-    IdentitiesOnly yes
-    UseKeychain yes
-    AddKeysToAgent yes
+# Epsilon / Publicis Bitbucket Server
+Host git.cnvrmedia.net
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/ei-epsilon-ssh
 ```
 
-I don't really understand what all the options do, but it works so long as when
-you clone the repos you use the below (notice the `-gatx`)
-
-```sh
-git clone git@github.com-gatx:GATX-Corp/...
-```
+Because identity follows the remote, you can clone epsilon repos normally
+(`git clone ssh://git@git.cnvrmedia.net:7999/...`) with no special host alias.

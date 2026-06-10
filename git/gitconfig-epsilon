@@ -1,0 +1,10 @@
+[user]
+name = Eli Itah
+email = eliitah@publicisgroupe.net
+signingkey = ~/.ssh/ei-epsilon-ssh.pub
+[gpg]
+format = ssh
+[commit]
+gpgsign = true
+[tag]
+gpgsign = true

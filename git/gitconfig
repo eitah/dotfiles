@@ -10,9 +10,9 @@ name = Eli Itah
 email = elijahbit@gmail.com
 signingkey = A874FA3798BA87C5 # eli 16 inch macbook credential
 [code]
-excludesfile = /Users/eitah/.gitignore
+excludesfile = ~/.gitignore
 [core]
-excludesfile = /Users/eitah/.gitignore
+excludesfile = ~/.gitignore
 editor = code --wait
 [alias]
 hist = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all -20
@@ -26,3 +26,6 @@ ui = true
 branch = false
 [rerere]
 enabled = true
+# Use epsilon identity for any repo with a Bitbucket (cnvrmedia) remote.
+[includeIf "hasconfig:remote.*.url:ssh://git@git.cnvrmedia.net:7999/**"]
+path = ~/dotfiles/git/gitconfig-epsilon

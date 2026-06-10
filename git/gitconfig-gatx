@@ -1,6 +1,0 @@
-[user]
-name = Eli Itah
-email = Eli.Itha@gatx.com
-signingkey = A874FA3798BA87C5 # eli 16 inch macbook credential
-[core]
-sshCommand = ssh -i ~/.ssh/Eli-Itha_GATX
