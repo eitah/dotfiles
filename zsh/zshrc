@@ -22,6 +22,14 @@ plugins=(
 # Autocomplete color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=100"
 
+# FIX for steeef: the steeef theme caches git info and only re-runs vcs_info
+# when PR_GIT_UPDATE is set (after a git/svn command or a cd). That means a bare
+# Enter won't pick up branch changes made elsewhere (other shells, the IDE).
+# Forcing PR_GIT_UPDATE=1 on every precmd makes the branch refresh every prompt.
+autoload -U add-zsh-hook
+function force_git_prompt_update { PR_GIT_UPDATE=1 }
+add-zsh-hook precmd force_git_prompt_update
+
 ZSH_THEME=steeef
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="Gnzh"
