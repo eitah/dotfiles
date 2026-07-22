@@ -25,7 +25,7 @@ ui = true
 [pager]
 branch = false
 [rerere]
-enabled = true
+	enabled = true
 # Use epsilon identity for any repo with a Bitbucket (cnvrmedia) remote.
 [includeIf "hasconfig:remote.*.url:ssh://git@git.cnvrmedia.net:7999/**"]
 path = ~/dotfiles/git/gitconfig-epsilon
