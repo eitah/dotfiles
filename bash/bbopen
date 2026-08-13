@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+#
+# Opens a file in the Bitbucket Server web UI, on master, in your browser.
+# Prefers the upstream remote and falls back to origin, so it points at the
+# canonical repo rather than a personal fork.
+#
+#   bbopen poc/scripts/dbx_sync_test.py 32   # file, at line 32
+#   bbopen poc/scripts                       # a directory
+#   bbopen                                   # repo root
+#
+# BBOPEN_BRANCH=develop and BBOPEN_REMOTE=origin override the defaults.
+
+set -euo pipefail
+
+file="${1:-}"
+line="${2:-}"
+branch="${BBOPEN_BRANCH:-master}"
+
+root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+  echo "bbopen: not in a git repo" >&2
+  exit 1
+}
+
+url=""
+for remote in "${BBOPEN_REMOTE:-upstream}" origin; do
+  if url="$(git remote get-url "$remote" 2>/dev/null)"; then break; fi
+done
+[[ -n "$url" ]] || {
+  echo "bbopen: no ${BBOPEN_REMOTE:-upstream} or origin remote" >&2
+  exit 1
+}
+
+# Normalises the three remote shapes into "<owner>/<slug>":
+#   ssh://git@host:7999/proj/repo.git   git@host:proj/repo.git   https://host/scm/proj/repo.git
+rest="${url#*://}"
+rest="${rest#*@}"
+host="${rest%%[:/]*}"
+repopath="${rest#"$host"}"
+repopath="${repopath#[:/]}"
+repopath="${repopath#scm/}"
+if [[ "$repopath" =~ ^[0-9]+/ ]]; then
+  repopath="${repopath#*/}" # drops the ssh port
+fi
+repopath="${repopath%.git}"
+repopath="${repopath%/}"
+
+# Bitbucket routes personal repos (~user) and project repos differently
+owner="${repopath%%/*}"
+slug="${repopath##*/}"
+if [[ "$owner" == '~'* ]]; then
+  base="https://$host/users/${owner#\~}/repos/$slug"
+else
+  base="https://$host/projects/$owner/repos/$slug"
+fi
+
+rel=""
+if [[ -n "$file" ]]; then
+  if [[ -d "$file" ]]; then
+    abs="$(cd -- "$file" && pwd -P)"
+    rel="${abs#"$root"}"
+    rel="${rel#/}"
+  else
+    # ls-files resolves the path from any cwd, but only for tracked files
+    rel="$(git ls-files --full-name -- "$file" 2>/dev/null | head -1 || true)"
+    if [[ -z "$rel" && -e "$file" ]]; then
+      abs="$(cd -- "$(dirname -- "$file")" && pwd -P)/$(basename -- "$file")"
+      rel="${abs#"$root"}"
+      rel="${rel#/}"
+    fi
+    # otherwise it isn't on disk, so assume it is already repo-relative
+    [[ -n "$rel" ]] || rel="$file"
+  fi
+  rel="${rel// /%20}"
+fi
+
+target="$base/browse"
+[[ -z "$rel" ]] || target="$target/$rel"
+target="$target?at=refs%2Fheads%2F$branch"
+[[ -z "$line" ]] || target="$target#$line"
+
+printf '%s\n' "$target"
+open "$target"
