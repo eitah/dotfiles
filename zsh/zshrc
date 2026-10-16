@@ -49,12 +49,14 @@ source ~/dotfiles/zsh/config.zsh # IDK if this works but it seems like what i li
 
 # aliases
 # alias ctx=kubectx
-alias gbr='gh pr view -w || gh browse'
+# alias gbr='gh pr view -w || gh browse'
+alias gbr='bbpr'
 alias gbc='gh pr view --json url --jq ".url" | pbcopy'
 alias dbc='osascript ~/dotfiles/osascripts/browser chrome'
 alias dbf='osascript ~/dotfiles/osascripts/browser firefox'
 alias dot='j dotfiles'
 alias gpull='git pull'
+alias gskip='git update-index --skip-worktree .vscode/settings.json'
 alias k=kubectl
 alias tf=terraform
 alias zrf='source ~/.zshrc && echo "refreshed zsh profile!"'

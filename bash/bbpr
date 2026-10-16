@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+#
+# Opens the Bitbucket pull request for a branch in your browser -- the
+# Bitbucket equivalent of gbr.
+#
+#   bbpr              # the PR for the current branch
+#   bbpr kafka-sync   # the PR for a named branch
+#
+# Pull requests live on the canonical repo even when the branch only exists on
+# a personal fork, so the lookup runs against upstream while the no-PR fallback
+# links to whichever remote actually holds the branch.
+#
+# BBPR_REMOTE=origin looks the PR up in the fork instead, ORBIT_PROFILE=other
+# picks a different orbit profile, and BBPR_BRANCH also sets the branch.
+
+set -euo pipefail
+
+# shellcheck source=bb-lib.sh
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)/bb-lib.sh"
+
+git rev-parse --show-toplevel >/dev/null 2>&1 || {
+  echo "bbpr: not in a git repo" >&2
+  exit 1
+}
+
+branch="${1:-${BBPR_BRANCH:-$(git branch --show-current)}}"
+[[ -n "$branch" ]] || {
+  echo "bbpr: HEAD is detached; pass the branch to open" >&2
+  exit 1
+}
+
+preferred="${BBPR_REMOTE:-upstream}"
+url="$(bb_remote_url "$preferred" origin)" || {
+  echo "bbpr: no $preferred or origin remote" >&2
+  exit 1
+}
+bb_parse_remote "$url"
+
+# orbit addresses Server repos by project key, which is upper case in the API
+project="$BB_OWNER"
+[[ "$project" == '~'* ]] || project="$(printf '%s' "$project" | tr '[:lower:]' '[:upper:]')"
+
+# Newest PR wins, and a merged or declined one still beats no link at all
+pr_id=""
+lookup_failed=""
+for state in open all; do
+  if ! prs="$(orbit -p "${ORBIT_PROFILE:-epsilon}" bb pr list "$project" "$BB_SLUG" \
+    --state "$state" --limit 100 -o json)"; then
+    lookup_failed=1
+    break
+  fi
+  pr_id="$(jq -r --arg b "$branch" '
+    def prs: if type == "array" then .[] elif has("values") then .values[] else . end;
+    [prs | select(.fromRef.displayId == $b)] | max_by(.id) | .id // empty
+  ' <<<"$prs")"
+  [[ -z "$pr_id" ]] || break
+done
+
+if [[ -n "$pr_id" ]]; then
+  target="$BB_WEB_BASE/pull-requests/$pr_id/overview"
+else
+  # Without a PR to open, link the branch on the repo that has it
+  remote="$(bb_remote_for_branch "$branch" "$preferred" origin || true)"
+  if [[ -n "$remote" ]]; then
+    bb_parse_remote "$(git remote get-url "$remote")"
+  fi
+  if [[ -n "$lookup_failed" ]]; then
+    echo "bbpr: could not reach Bitbucket via orbit; opening the branch instead" >&2
+    target="$BB_WEB_BASE/browse?at=refs%2Fheads%2F$branch"
+  else
+    target="$BB_WEB_BASE/pull-requests?create&sourceBranch=refs%2Fheads%2F$branch"
+  fi
+fi
+
+printf '%s\n' "$target"
+open "$target"

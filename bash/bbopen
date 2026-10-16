@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Opens a file in the Bitbucket Server web UI, on master, in your browser.
+# Opens a file in the Bitbucket Server web UI, on the current branch, in your
+# browser.
 # Prefers the upstream remote and falls back to origin, so it points at the
 # canonical repo rather than a personal fork.
 #
@@ -12,46 +13,31 @@
 
 set -euo pipefail
 
+# shellcheck source=bb-lib.sh
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)/bb-lib.sh"
+
 file="${1:-}"
 line="${2:-}"
-branch="${BBOPEN_BRANCH:-master}"
 
 root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
   echo "bbopen: not in a git repo" >&2
   exit 1
 }
 
-url=""
-for remote in "${BBOPEN_REMOTE:-upstream}" origin; do
-  if url="$(git remote get-url "$remote" 2>/dev/null)"; then break; fi
-done
-[[ -n "$url" ]] || {
-  echo "bbopen: no ${BBOPEN_REMOTE:-upstream} or origin remote" >&2
+branch="${BBOPEN_BRANCH:-$(git branch --show-current)}"
+[[ -n "$branch" ]] || {
+  echo "bbopen: HEAD is detached; set BBOPEN_BRANCH to the branch to open" >&2
   exit 1
 }
 
-# Normalises the three remote shapes into "<owner>/<slug>":
-#   ssh://git@host:7999/proj/repo.git   git@host:proj/repo.git   https://host/scm/proj/repo.git
-rest="${url#*://}"
-rest="${rest#*@}"
-host="${rest%%[:/]*}"
-repopath="${rest#"$host"}"
-repopath="${repopath#[:/]}"
-repopath="${repopath#scm/}"
-if [[ "$repopath" =~ ^[0-9]+/ ]]; then
-  repopath="${repopath#*/}" # drops the ssh port
-fi
-repopath="${repopath%.git}"
-repopath="${repopath%/}"
-
-# Bitbucket routes personal repos (~user) and project repos differently
-owner="${repopath%%/*}"
-slug="${repopath##*/}"
-if [[ "$owner" == '~'* ]]; then
-  base="https://$host/users/${owner#\~}/repos/$slug"
-else
-  base="https://$host/projects/$owner/repos/$slug"
-fi
+preferred="${BBOPEN_REMOTE:-upstream}"
+remote="$(bb_remote_for_branch "$branch" "$preferred" origin || true)"
+url="$(bb_remote_url "${remote:-$preferred}" origin)" || {
+  echo "bbopen: no $preferred or origin remote" >&2
+  exit 1
+}
+bb_parse_remote "$url"
+base="$BB_WEB_BASE"
 
 rel=""
 if [[ -n "$file" ]]; then

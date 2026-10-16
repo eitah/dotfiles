@@ -29,3 +29,5 @@ branch = false
 # Use epsilon identity for any repo with a Bitbucket (cnvrmedia) remote.
 [includeIf "hasconfig:remote.*.url:ssh://git@git.cnvrmedia.net:7999/**"]
 path = ~/dotfiles/git/gitconfig-epsilon
+# [url "https://git.cnvrmedia.net/scm/"]
+	# insteadOf = ssh://git@git.cnvrmedia.net:7999/
